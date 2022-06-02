@@ -1,0 +1,18 @@
+@import 'visual-identity';
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+nz-layout {
+    height: 100vh;
+}
+
+nz-content {
+    background: $body-background-color !important;
+}
+
+nz-header {
+    background: $header-background-color !important;
+}

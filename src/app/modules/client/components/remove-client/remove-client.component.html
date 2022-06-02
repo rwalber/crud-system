@@ -1,0 +1,33 @@
+<nz-modal
+	[(nzVisible)]="visibleModalRemoveClient"
+	[nzWidth]="450"
+	[nzFooter]="null"
+	(nzOnCancel)="closeModal()"
+    nzTitle="Remover Cliente"
+>
+    <ng-container *nzModalContent>
+		<section class="text-confirm" *ngIf="!statusRemoveClient">
+			<p>
+				Tem certeza que deseja remover o cliente <strong>{{ client?.fullName! }}</strong>?
+			</p>
+			<div class="action-butons">
+				<button class="cancel-button" (click)="closeModal()">
+					Cancelar
+				</button>
+				<button class="confirm-button" (click)="removeClient()">
+					Confirmar
+				</button>
+			</div>
+		</section>
+        <section *ngIf="statusRemoveClient">
+			<p>
+				Cliente removido com sucesso!
+			</p>
+			<div class="action-butons">
+				<button class="confirm-button" (click)="closeModalBeforeRemoveClient()">
+					Confirmar
+				</button>
+			</div>
+		</section>
+    </ng-container>
+</nz-modal>

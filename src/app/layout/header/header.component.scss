@@ -1,0 +1,9 @@
+@import '../../visual-identity';
+
+.header-content {
+    padding: $content-padding;
+
+    h1 {
+        color: $font-title-color;
+    }
+}

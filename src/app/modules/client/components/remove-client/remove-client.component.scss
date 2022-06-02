@@ -1,0 +1,41 @@
+@import '../../../../visual-identity.scss';
+
+p {
+    margin-bottom: 2rem !important;
+}
+
+.action-butons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        
+        height: 35px;
+        width: 100px;
+
+        border: none;
+        align-items: center;
+        border-radius: 4px;
+    }
+    
+    button:hover {
+        transition: .4s;
+        filter: brightness(105%);
+        cursor: pointer;
+    }
+
+    .confirm-button {
+        background: $button-success-color;
+        color: $font-title-color;
+    }
+
+    .cancel-button {
+        background: $button-cancel-color;
+        color: $font-title-color;
+        margin-right: 1rem;
+    }
+}

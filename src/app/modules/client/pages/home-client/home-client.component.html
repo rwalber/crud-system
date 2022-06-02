@@ -1,0 +1,89 @@
+<section class="home-client-content">
+    <h1>Clientes</h1>
+    <section class="sub-menu">
+        <div class="search-client" [formGroup]="searchForm">
+            <div class="inputWithLabel">
+                <label for="">Filtro:</label>
+                <input formControlName="searchInput" nz-input placeholder="Nome do cliente, CPF ou Data nascimento" />
+            </div>
+            <button nz-button nzType="primary" (click)="searchClients()">
+                <i nz-icon nzType="search" nzTheme="outline"></i>
+            </button>
+        </div>
+        <div class="create-client">
+            <a routerLink="/client/create-edit">
+                <button nz-button nzType="primary">
+                    <i nz-icon nzType="plus" nzTheme="outline"></i>
+                    <label for="">Cadastrar Cliente</label>
+                </button>
+            </a>
+        </div>
+    </section>
+    <section class="listing-clients">
+        <nz-table 
+            #clientTable [nzData]="clients"
+            [nzFrontPagination]="false"
+            [nzLoading]="loadingClients"
+            [nzTotal]="pagination.totalElements"
+            [nzPageSize]="pagination.size"
+            [nzPageIndex]="pagination.page"
+            (nzQueryParams)="onCurrentPageChange($event)"
+            nzTableLayout="fixed"
+            nzSize="small"
+        >
+            <thead>
+                <tr>
+                <th 
+                    nzWidth="25%" 
+                    [nzSortFn]="sortFn"
+                    [nzSortDirections]="sortFnOrder"
+                >
+                    Nome
+                </th>
+                <th>CPF</th>
+                <th class="text-align-center">Data de Nascimento</th>
+                <th class="text-align-center">Data de Cadastro</th>
+                <th class="text-align-center">Renda Mensal</th>
+                <th class="text-align-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of clientTable.data">
+                    <td [nzEllipsis]="true">{{ data.fullName }}</td>
+                    <td>{{ data.cpf | cpf }}</td>
+                    <td class="text-align-center">{{ data.birthdate | date: 'dd/MM/yyyy' }}</td>
+                    <td class="text-align-center">{{ data.registrationDate | date: 'dd/MM/yyyy' }}</td>
+                    <td class="text-align-center">{{ data.monthlyIncome | currency : 'R$ ' }}</td>
+                    <td class="text-align-center">
+                        <section class="actions-container">
+                            <button nz-tooltip nzTooltipTitle="Detalhes do cliente" class="button-action" nz-button nzType="text" (click)="openModalDetailClient(data)">
+                                <i nz-icon nzType="file-search" nzTheme="outline"></i>
+                            </button>
+                            <button nz-tooltip nzTooltipTitle="Editar cliente" nz-button nzType="text" (click)="editClient(data.id)">
+                                <i nz-icon nzType="edit" nzTheme="outline"></i>
+                            </button>
+                            <button nz-tooltip nzTooltipTitle="Remover cliente" nz-button nzType="text" (click)="openModalRemoveClient(data)">
+                                <i nz-icon nzType="delete" nzTheme="outline"></i>
+                            </button>
+                        </section>
+                    </td>
+                </tr>   
+            </tbody>
+        </nz-table>
+    </section>
+</section>
+
+<app-remove-client
+    *ngIf="visibleModalRemoveClient"
+    [visibleModalRemoveClient]="visibleModalRemoveClient"
+    [client]="selectedClient"
+    (onClose)="closeRemoveClient()"
+    (reloadChildren)="reloadChildrenBeforeChanges()"
+></app-remove-client>
+
+<app-detail-client
+    *ngIf="visibleModalDetailClient"
+    [visibleModalDetailClient]="visibleModalDetailClient"
+    [client]="selectedClient"
+    (onClose)="closeDetailClient()"
+></app-detail-client>

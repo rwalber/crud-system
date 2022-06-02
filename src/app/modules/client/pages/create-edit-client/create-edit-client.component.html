@@ -1,0 +1,88 @@
+<section class="create-edit-content">
+    <h1>Cadastro de Clientes</h1>
+    <section class="form-create-edit">
+        <form nz-form [formGroup]="clientForm" (submit)="toEditClient ? updateClient() : createClient()">
+            <section class="row-items">
+                <nz-form-item class="form-width-50 column-items">
+                    <nz-form-label nzRequired>Nome</nz-form-label>
+                    <nz-form-control 
+                        nzHasFeedback 
+                        nzValidatingTip="Validando..."
+                        nzErrorTip="O nome do cliente deve possuir ao menos um sobrenome."
+                    >
+                        <input nz-input formControlName="fullName" placeholder="Informe o nome" />
+                    </nz-form-control>
+                </nz-form-item>
+    
+                <nz-form-item class="form-width-22 column-items">
+                    <nz-form-label nzRequired>CPF</nz-form-label>
+                    <nz-form-control 
+                        nzHasFeedback 
+                        nzValidatingTip="Validando..."
+                        nzErrorTip="CPF inválido."
+                    >
+                        <input nz-input formControlName="cpf" placeholder="Insira o CPF" numeric-only mask="000.000.000-00" [readonly]="toEditClient" />
+                    </nz-form-control>
+                </nz-form-item>
+    
+                <nz-form-item class="form-width-22 column-items">
+                    <nz-form-label nzRequired>Data de Nascimento</nz-form-label>
+                    <nz-form-control 
+                        nzHasFeedback 
+                        nzValidatingTip="Validando..."
+                        nzErrorTip="O cliente deve possuir mais de 18 anos e menos de 60 anos."
+                    >
+                        <nz-date-picker formControlName="birthdate"
+                                        ngDefaultControl
+                                        nzFormat="dd/MM/yyyy"
+                                        [nzSuffixIcon]="calendarIcon"
+                                        nzPlaceHolder="__/__/____"
+                        ></nz-date-picker>
+                    </nz-form-control>
+                </nz-form-item>
+            </section>
+            
+            <section class="row-items">
+                <nz-form-item class="form-width-22 column-items">
+                    <nz-form-label nzRequired>Renda Mensal</nz-form-label>
+                    <nz-form-control nzHasFeedback nzValidatingTip="Validando...">
+                        <input  nz-input 
+                                formControlName="monthlyIncome" 
+                                placeholder="R$ " 
+                                numeric-only 
+                                mask="separator.2" 
+                                [thousandSeparator]="'.'" 
+                                [decimalMarker]="','" 
+                                prefix="R$ "
+                        />
+                    </nz-form-control>
+                </nz-form-item>
+    
+                <nz-form-item class="form-width-72 column-items">
+                    <nz-form-label nzRequired>E-mail</nz-form-label>
+                    <nz-form-control 
+                        nzHasFeedback 
+                        nzValidatingTip="Validando..."
+                        nzErrorTip="E-mail inválido."
+                    >
+                        <input nz-input formControlName="email" placeholder="Informe o e-mail" />
+                    </nz-form-control>
+                </nz-form-item>
+            </section>
+
+            <section >
+                <label class="warning-required-label" nzRequired>* Campos com preenchimento obrigatório.</label>
+            </section>
+
+            <section class="action-buttons">
+                <button nz-button nzType="primary" type="submit" [disabled]="clientForm.invalid">
+                    <label for="">Salvar</label>
+                </button>
+            </section>
+        </form>
+    </section>
+</section>
+
+<ng-template #calendarIcon>
+    <i class="calendarIcon" nz-icon nzType="calendar" nzTheme="outline"></i>
+</ng-template>

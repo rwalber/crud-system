@@ -1,0 +1,32 @@
+<nz-modal
+	[(nzVisible)]="visibleModalDetailClient"
+	[nzWidth]="450"
+	[nzFooter]="null"
+	(nzOnCancel)="closeModal()"
+    nzTitle="Detalhes do Cliente"
+>
+    <ng-container *nzModalContent>
+		<section class="text-confirm">
+			<p>
+				<strong>Nome: </strong> {{ client?.fullName! }}
+			</p>
+			<p>
+				<strong>CPF: </strong> {{ client?.cpf! | cpf }}
+			</p>
+			<p>
+				<strong>E-mail: </strong> {{ client?.email! }}
+			</p>
+			<p>
+				<strong>Data de Nascimento: </strong> {{ client?.birthdate! | date: 'dd/MM/yyyy' }}
+			</p>
+			<p>
+				<strong>Data de cadastro: </strong> {{ client?.registrationDate! | date: 'dd/MM/yyyy' }}
+			</p>
+			<div class="action-butons">
+				<button class="cancel-button" (click)="closeModal()">
+					Fechar
+				</button>
+			</div>
+		</section>
+    </ng-container>
+</nz-modal>

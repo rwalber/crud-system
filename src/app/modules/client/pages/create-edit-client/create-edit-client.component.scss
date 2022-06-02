@@ -1,0 +1,117 @@
+@import '../../../../visual-identity.scss';
+
+.create-edit-content {
+    padding: $content-padding;
+
+    h1 {
+        text-transform: uppercase;
+        margin-top: 1.5rem;
+        color: $font-body-primary-color;
+        font-weight: 900;
+    }
+
+    nz-form-label {
+        margin-bottom: 1rem;
+    }
+
+    nz-form-control {
+        width: 100%;
+
+        input, nz-date-picker {
+            height: 60px;
+            padding: 8px, 16px;
+            border: 1px solid $input-border-color;
+            border-radius: 4px;
+        }
+
+        input::placeholder {
+            font-weight: 400;
+        }
+
+        nz-date-picker {
+            width: 100%;
+        }
+    }
+
+    nz-form-item {
+        @media screen and (max-width: 650px) and (min-width: 575px) {
+            margin-bottom: 3.5rem !important;
+        }
+    }
+
+    .row-items {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 3.5rem;
+
+        @media screen and (max-width: 650px) {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin-bottom: 0;
+        }
+    }
+
+    .column-items {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-width-50 {
+        width: 50%;
+
+        @media screen and (max-width: 650px) {
+            width: 100%;
+        }
+    }
+
+    .form-width-22 {
+        width: 22%;
+        
+        @media screen and (max-width: 650px) {
+            width: 100%;
+        }
+    }
+
+    .form-width-72 {
+        width: 74%;
+
+        @media screen and (max-width: 650px) {
+            width: 100%;
+        }
+    }
+
+    .warning-required-label {
+        font-size: 12px !important;
+        color: $font-body-warning-label !important;
+        font-weight: 500;
+    }
+
+    .action-buttons {
+        margin: 2rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        button {
+            height: 40px;
+            width: 180px;
+            background: $button-success-color;
+            border-radius: 4px;
+            border: none;
+        }
+
+        button:hover {
+            transition: .4s;
+            filter: brightness(105%);
+        }
+    }
+}
+
+.calendarIcon {
+    font-size: 20px;
+    color: $font-body-terciary-color;
+}
+

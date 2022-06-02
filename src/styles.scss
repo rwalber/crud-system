@@ -1,0 +1,25 @@
+@import './app/visual-identity.scss';
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.ant-table-pagination {
+    justify-content: center !important;
+}
+
+.ant-table-tbody>tr>td {
+    border-bottom: 10px solid #FFF;
+}
+
+.ant-form-item-label>label {
+    color: $font-body-secondary-color !important;
+    font-size: 14px;
+}
+
+.ant-form-item-explain, .ant-form {
+    margin-top: 1rem;
+    font-size: 10px;
+    
+}
